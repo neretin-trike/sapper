@@ -93,6 +93,8 @@ html {
 body {
     height: 100vh;
 
+    background-color: #231b2c;
+
     font-family: 'Roboto';
     color: var(--font-color);
 
@@ -158,5 +160,8 @@ ul {
   
 #playing-field {
     display: block;
-    border: 2px solid darkgreen;
+    border: 0.4rem solid darkgreen;
+    border-radius: 1.5rem;
+
+    box-shadow: 0 0 8rem 0 black;
 }
