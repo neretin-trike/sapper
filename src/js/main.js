@@ -7,11 +7,16 @@ window.onload = function () {
     dom.playingField.height = 500;
 
 
+    const getRandomArbitrary = (min, max) => {
+        return Math.ceil(Math.random() * (max - min) + min);
+    }
 
     const ctx = dom.playingField.getContext("2d");
 
     class Cell {
         constructor(x, y, context, even) {
+            this.bomb = null;
+
             this.x = x;
             this.y = y;
 
@@ -38,13 +43,33 @@ window.onload = function () {
             this.context.strokeStyle = "Burlywood";
             this.context.lineWidth = 3;
             this.context.strokeRect(this.globalX+1.5, this.globalY+1.5, 50-3, 50-3);
+
+        }
+    }
+
+    class Bomb {
+        constructor (context) {
+            this.context = context;
+
+            // this.context.beginPath();
+            // this.context.fillStyle = "Crimson";
+            // this.context.arc(25, 25, 10, 0, Math.PI*2, false);
+            // this.context.closePath();
+            // this.context.fill();
+        }
+        render() {
+            this.context.beginPath();
+            this.context.fillStyle = "Crimson";
+            this.context.arc(this.globalX+25, this.globalY+25, 10, 0, Math.PI*2, false);
+            this.context.closePath();
+            this.context.fill();
         }
     }
 
     class Grid {
         constructor(width, height) {
             this.cellArray = [];
-
+            
             let even = 0;
             for (let i = 0; i < width; i++) {
                 this.cellArray[i] = [];
@@ -56,6 +81,22 @@ window.onload = function () {
                 }
                 even += 1;
             }
+
+            let bombCount = 10;
+            while(bombCount) {
+
+                let randomX = getRandomArbitrary(0, 9);  
+                let randomY = getRandomArbitrary(0, 9);  
+
+                if ( this.cellArray[randomX][randomY].bomb === null) {
+                    this.cellArray[randomX][randomY].bomb = new Bomb(ctx);
+                    this.cellArray[randomX][randomY].bomb.render.call(this.cellArray[randomX][randomY]);
+
+                    bombCount -= 1;
+                } 
+                console.log(randomX, randomY);
+            }
+
 
             dom.playingField.addEventListener('click', (event) => {
                 let ofX = event.offsetX;
