@@ -8,13 +8,17 @@ const config = {
     notify: false // Отключаем уведомления
 };
 
+gulp.task('js', function() {
+	return gulp.src('src/**/*.js')
+	    .pipe(browserSync.reload({ stream: true }))
+});
+
 gulp.task('css', function() {
 	return gulp.src('src/**/*.css')
 	    .pipe(browserSync.reload({ stream: true }))
 });
 
 gulp.task('html', function() {
-    console.log("шо");
     return gulp.src('src/*.html')
 	    .pipe(browserSync.reload({ stream: true }))
 });
@@ -26,5 +30,6 @@ gulp.task('browser-sync', function() { // Создаем таск browser-sync
 gulp.task('watch', function() {
     gulp.watch('src/*.html', gulp.parallel('html')); // Наблюдение за HTML файлами в корне проекта
     gulp.watch('src/**/*.css', gulp.parallel('css')); // Наблюдение за css файлами
+    gulp.watch('src/**/*.js', gulp.parallel('js')); // Наблюдение за css файлами
 });
 gulp.task('default', gulp.parallel('browser-sync', 'watch'));
