@@ -21,7 +21,11 @@ export default class Grid {
 
                 for (let j = 0; j < height; j++) {
 
-                    this._cellArray[i][j] = new Cell(i, j, context, even, cellSize);
+                    if (even % 2 == 0) {
+                        this._cellArray[i][j] = new Cell(i, j, context, "green", cellSize);
+                    } else {
+                        this._cellArray[i][j] = new Cell(i, j, context, "darkgreen", cellSize);
+                    }
 
                     even += 1;
                 }
@@ -32,8 +36,16 @@ export default class Grid {
 
         playingField.addEventListener('click', (event) => {
             let restX = Math.trunc(event.offsetX / cellSize);
-            let restY = Math.trunc(event.offsetY / cellSize);;
+            let restY = Math.trunc(event.offsetY / cellSize);
+
             this._cellArray[restX][restY].checkCell(this._cellArray);
+            
+        });
+        playingField.addEventListener('contextmenu', (event) => {
+            let restX = Math.trunc(event.offsetX / cellSize);
+            let restY = Math.trunc(event.offsetY / cellSize);
+            event.preventDefault();
+            this._cellArray[restX][restY].markCell();
         });
         playingField.addEventListener('mousemove', (event) => {
 
