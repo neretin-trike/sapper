@@ -7,18 +7,25 @@ window.onload = function () {
     dom.playingField.height = 500;
 
     dom.playingField.addEventListener('click', (event) => {
-        // console.log(event.offsetX, event.offsetY);
+        let vX = (-250 + event.offsetX) > 0 ? 1 : -1;
+        let vY = (250 - event.offsetY) > 0 ? 1 : -1;
 
-        // let rotX = 10; // Math.log(250-event.offsetX)*2;
-        // let rotY = 10; //Math.log(250-event.offsetY)*2;
-        // console.log(rotX, rotY);
+        let lengthX = Math.abs(250 - event.offsetX);
+        let lengthY = Math.abs(250 - event.offsetY);
 
-        // dom.playingField.style.transform =
-        //     `perspective(500px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+        let propX = (lengthX * 15) / 250;
+        let propY = (lengthY * 15) / 250;
 
-        // setTimeout(() => {
-        //     dom.playingField.style.transform = "";
-        // }, 250)
+        let rotX = propX * vY;
+        let rotY = propY * vX;
+
+        console.log(rotX, rotY);
+
+        dom.playingField.style.transform = `perspective(750px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+
+        setTimeout(() => {
+            dom.playingField.style.transform = "perspective(750px) rotateX(0deg) rotateY(0deg)";
+        }, 300)
     });
 
     const getRandomArbitrary = (min, max) => {
@@ -211,4 +218,6 @@ window.onload = function () {
 
     let grid = new Grid(10, 10);
     console.log(grid);
+
+
 }

@@ -165,9 +165,8 @@ ul {
 
     box-shadow: 0 0 8rem 0 black;
 
-    transition: transform 0.2s ease-out;
+    /* transition: transform 0.3s cubic-bezier(.17,.89,.53,1.77); */
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
 }
 
-.incline-top {
-    transform: perspective(800px) rotateX(9deg) rotateY(0deg) rotateZ(0deg);
-}
