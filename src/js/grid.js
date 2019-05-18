@@ -5,10 +5,11 @@ import { getRandomArbitrary } from "./utils.js"
 
 export default class Grid {
     constructor(width, height, playingField, context) {
+        this._cellArray = [];
+        this._bombArray = [];
+
         this.height = height;
         this.width = width;
-        this._bombArray = [];
-        this._cellArray = [];
 
         let cellSize = 650 / width;
 
@@ -55,7 +56,7 @@ export default class Grid {
 
                 bombCount -= 1;
 
-                // cell.bomb.render.call(this._cellArray[randomX][randomY]);
+                cell.bomb.render.call(this._cellArray[randomX][randomY]);
             }
         }
 

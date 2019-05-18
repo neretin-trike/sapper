@@ -2,18 +2,22 @@ import { getDirections } from "./utils.js"
 
 export default class Bomb {
     constructor(cell) {
-        let { context, globalX, globalY, x, y } = cell;
+        let { context, globalX, globalY, x, y, size } = cell;
 
         this.context = context;
         this.x = x;
         this.y = y;
+        this.size = size;
         this.globalX = globalX;
         this.globalY = globalY;
     }
     render() {
+        let offset = this.size/2;
+        let radius = (10 * this.size) / 65;
+
         this.context.beginPath();
         this.context.fillStyle = "Crimson";
-        this.context.arc(this.globalX + 25, this.globalY + 25, 10, 0, Math.PI * 2, false);
+        this.context.arc(this.globalX + offset, this.globalY + offset, radius, 0, Math.PI * 2, false);
         this.context.closePath();
         this.context.fill();
     }
@@ -26,7 +30,7 @@ export default class Bomb {
 
             try {
                 if (cellArray[x][y].bomb === null) {
-                    cellArray[x][y].setNumber();
+                    cellArray[x][y].number += 1;
                 }
             } catch {
                 continue;

@@ -22,8 +22,6 @@ window.onload = function () {
     //     let rotX = propX * vY;
     //     let rotY = propY * vX;
 
-    //     console.log(rotX, rotY);
-
     //     dom.playingField.style.transform = `perspective(1300px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
 
     //     setTimeout(() => {
@@ -33,7 +31,7 @@ window.onload = function () {
 
     const ctx = dom.playingField.getContext("2d");
 
-    let grid = new Grid(10, 10, dom.playingField, ctx);
+    let grid = new Grid(10,10, dom.playingField, ctx);
     grid.placeBombs(10);
 
 }
