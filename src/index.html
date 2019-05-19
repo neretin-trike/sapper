@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Игра Сапёр</title>
 </head>
+
 <body>
     <header class="header">
         <div class="logo">
@@ -18,9 +20,24 @@
     <main class="main">
 
         <canvas id="playing-field"></canvas>
-        <!-- <section class="field-wrapper"> -->
-        <!-- </section> -->
+        
+        <section class="field-overlay">
+            <h2 class="game-status">Игра выиграна!</h2>
+            <table class="game-result">
+                <tr>
+                    <td class="name">Время</td>
+                    <td class="value">00:15</td>
+                </tr>
+                <tr>
+                    <td class="name">Меток</td>
+                    <td class="value">10</td>
+                </tr>
+            </table>
+            <button class="button">Начать заново</button>
+        </section>
+        
     </main>
     <script type="module" src="js/main.js"></script>
 </body>
+
 </html>

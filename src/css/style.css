@@ -164,14 +164,59 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-  
-.main .field-wrapper {
 
-
-    /* will-change: transform; */
-    overflow: hidden;
+    position: relative;
 }
+
+/*-------------------------------
+--------- FIELD OVERLAY ---------
+-------------------------------*/
+
+.field-overlay {
+    color: greenyellow;
+
+    position: absolute;
+    width: 65rem;
+    height: 65rem;
+    border-radius: 1.5rem;
+
+    background: rgb(35,27,44,0.75);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.field-overlay .game-status {
+    font-family: "Slot Cyrillic";
+    font-size: 7.2rem;
+    font-weight: 400;
+}
+
+.field-overlay .game-result {
+    margin: 5rem 0;
+
+    width: 36rem;
+    font-size: 3.6rem;
+}
+
+.field-overlay .game-result .value {
+    text-align: right;
+}
+
+.button {
+    font-size: 2.4rem;
+    border-radius: 1.5rem;
+    border: 0.2rem solid greenyellow;
+
+    padding: 1.5rem 3rem;
+
+    color: greenyellow;
+    text-transform: uppercase;
+    text-align: center;
+}
+
 
 #playing-field {
     border: 0.4rem solid darkgreen;

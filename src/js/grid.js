@@ -68,13 +68,7 @@ export default class Grid {
                 } else {
                     this._cellArray[i][j] = new Cell(i, j, this.context, "darkgreen", this.cellSize);
                 }
-                // this._cellArray[i][j].addEventListener("leftclick",()=> {
-                //     alert("лево");
-                // });
-                // this._cellArray[i][j].addEventListener("rightclick",(data)=> {
-                //     alert("право "+data);
-                // });
-
+ 
                 even += 1;
             }
             even += 1;
