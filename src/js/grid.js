@@ -14,12 +14,16 @@ export default class Grid {
         this.cellSize = 650 / this.width;
 
         this._createCells();
+        this._addEventListeners(playingField);
 
+    }
+    _addEventListeners(playingField) {
         playingField.addEventListener('click', (event) => {
             let { x, y } = getIndexByClick(event, this.cellSize);
 
             this._cellArray[x][y].checkCell(this._cellArray);
         });
+
         playingField.addEventListener('contextmenu', (event) => {
             let { x, y } = getIndexByClick(event, this.cellSize);
 
@@ -27,27 +31,28 @@ export default class Grid {
             this._cellArray[x][y].markCell();
         });
 
-        let prevState = { x: 0, y: 0 };
+        let prevState = { x: -1, y: -1 };
         playingField.addEventListener('mousemove', (event) => {
 
             let { x, y } = getIndexByClick(event, this.cellSize);
 
-            if (x < this.width && y < this.width) {
+            if ((x < this.width && y < this.height) &&
+                (prevState.x !== x || prevState.y !== y)) {
 
-                if (prevState.x !== x || prevState.y !== y) {
+                if (prevState.x !== -1 && prevState.y !== -1) {
                     this._cellArray[prevState.x][prevState.y].outCell();
-                    prevState = { x, y };
-                    this._cellArray[x][y].overCell();
                 }
-
+                
+                prevState = { x, y };
+                this._cellArray[x][y].overCell();
             }
 
         });
+
         playingField.addEventListener('mouseout', (event) => {
             this._cellArray[prevState.x][prevState.y].outCell();
-            prevState = { x: 0, y: 0 };
+            prevState = { x: -1, y: -1 };
         });
-
     }
     _createCells() {
 
@@ -83,8 +88,8 @@ export default class Grid {
 
                 cell.bomb = new Bomb(cell);
                 this._bombArray.push(cell.bomb);
-                cell.bomb.render.call(this._cellArray[randomX][randomY]);
                 bombCount -= 1;
+                // cell.bomb.render.call(this._cellArray[randomX][randomY]);
             }
         }
 

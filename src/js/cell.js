@@ -5,8 +5,8 @@ export default class Cell {
         this._number = 0;
 
         this.isMakred = false;
-        this.size = cellSize;
         this.isOpen = false;
+        this.size = cellSize;
         this.bomb = null;
         this.x = x;
         this.y = y;
@@ -30,12 +30,20 @@ export default class Cell {
         this.context.fillStyle = color;
         this.context.fillText(text, this.globalX + (offset / 1.5), this.globalY + (offset * 1.25));
     }
+    _renderHoverEffect(color) {
+
+    } 
     get number() {
         return this._number;
     }
     set number(value) {
         this._number = value;
         // this.renderNumber();
+    }
+    displayNumber() {
+        if (this.number) {
+            this._renderText("black", this.number);
+        }
     }
     checkCell(cellArray) {
         if (this.isOpen === false) {
@@ -51,19 +59,14 @@ export default class Cell {
         }
     }
     markCell() {
-        this.isMakred = !this.isMakred;
-
         if (this.isOpen === false) {
+            this.isMakred = !this.isMakred;
+
             if (this.isMakred) {
                 this._renderText("orange","✖")
             } else {
                 this._renderCell(this.color);
             }
-        }
-    }
-    displayNumber() {
-        if (this.number) {
-            this._renderText("black", this.number);
         }
     }
     overCell() {
@@ -104,8 +107,12 @@ export default class Cell {
             try {
                 if (cellArray[x][y].number === 0) {
                     cellArray[x][y].number = undefined;
-                    cellArray[x][y].openCell();
-                    cellArray[x][y].lookAround(cellArray);
+
+                    setTimeout( () => {
+                        cellArray[x][y].openCell();
+                        cellArray[x][y].lookAround(cellArray);
+                    }, 50 );
+
                 } else {
                     cellArray[x][y].openCell();
                     cellArray[x][y].displayNumber();
