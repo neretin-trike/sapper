@@ -113,7 +113,6 @@ button {
     background: none;
     cursor: pointer;
     padding: 0;
-    display: block; 
 }
 
 input {
@@ -131,13 +130,20 @@ ul {
 }
 
 /*-------------------------------
---------- HEADER STYLES ---------
+------------ HEADER -------------
 -------------------------------*/
 
 .header {
     font-family: "Slot Cyrillic";
     color: white;
+
+    display: flex;
+    align-items: center;
 }
+
+/*-------------------------------
+------------- LOGO --------------
+-------------------------------*/
 
 .logo {
     margin: 2rem 0;
@@ -153,6 +159,40 @@ ul {
 
 .logo img {
     width: 7rem;
+}
+
+/*-------------------------------
+-------------- MENU -------------
+-------------------------------*/
+
+.menu {
+    margin-left: auto;
+    display: flex;
+}
+
+.menu-button {
+    margin-left: 1.5rem;
+
+    width: 5rem;
+    height: 5rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    transition: transform 0.1s ease-in;
+}
+
+.menu .repeat {
+    background-image: url(../images/repeat.png);
+}
+.menu .repeat:hover{
+    background-position: 0 -5.1rem;
+}
+
+.menu .setting {
+    background-image: url(../images/setting.png);
+}
+.menu .setting:hover{
+    background-position: 0 -5.1rem;
 }
 
 /*-------------------------------
@@ -208,7 +248,7 @@ ul {
     top: 8.25rem;
     width: 65rem;
     height: 65rem;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
 
     opacity: 1;
     background: rgb(35,27,44,0.85);
@@ -236,23 +276,65 @@ ul {
     text-align: right;
 }
 
-.button {
-    font-size: 2.4rem;
-    border-radius: 1.5rem;
-    border: 0.2rem solid greenyellow;
+/*-------------------------------
+--------- SETTING WINDOW --------
+-------------------------------*/
 
-    padding: 1.5rem 3rem;
-
-    color: greenyellow;
-    text-transform: uppercase;
-    text-align: center;
+.setting-window.hidden {
+    display: none;
 }
 
-.button:hover {
-    background-color: greenyellow;
-    color: rgb(35,27,44);
+.setting-window {
+    color: white;
+
+    position: absolute;
+    top: 8.25rem;
+    width: 65rem;
+    height: 65rem;
+    border-radius: 1rem;
+
+    opacity: 1;
+    background: rgb(35,27,44,0.85);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
+.setting-window .title {
+    font-family: "Slot Cyrillic";
+    font-size: 7.2rem;
+    font-weight: 400;
+}
+
+.setting-window .setting-fields {
+    margin: 5rem 0;
+
+    width: 50rem;
+    font-size: 2.5rem;
+}
+
+.setting-window .setting-fields tr {
+    line-height: 5rem;
+}
+
+.setting-window .setting-fields td:last-child {
+    vertical-align: middle;
+    text-align: right;
+    width: 12.5rem;
+}
+
+.setting-window .setting-fields input, 
+.setting-window .setting-fields select {
+    width: 100%;
+    font-size: 2rem;
+} 
+
+.setting-window .interaction {
+    padding: 0 6.5rem;
+    margin-left: auto;
+}
 
 #playing-field {
     border: 0.4rem solid darkgreen;
@@ -263,4 +345,43 @@ ul {
     /* transition: transform 0.3s cubic-bezier(.17,.89,.53,1.77); */
 }
 
+.button {
+    margin: 0 1rem;
+    font-size: 1.6rem;
+    border-radius: 1rem;
+    border: 0.2rem solid #fe1949;
 
+    padding: 1rem 2rem;
+
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #fe1949;
+    color: white;
+}
+
+.custom-check{
+    cursor: pointer;
+    margin-left: auto;
+    position: relative;
+    text-indent: 15px;
+    
+    display: block;
+
+    background-color: transparent;
+
+    width: 2rem;
+    height: 2rem;
+    border-radius: 4.5rem;
+    border: 0.2rem solid #fe1949;
+  }
+  
+input[type="checkbox"]{
+    display: none;
+}
+input[type="checkbox"]:checked + label {
+    background-color: #fe1949;
+}

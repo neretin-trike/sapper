@@ -14,11 +14,14 @@
     <header class="header">
         <div class="logo">
             <h1 class="title">сапёр</h1>
-            <img src="./images/bomb.png">
+            <img src="./images/bomb.png" alt="Логотип в виде бомбы">
         </div>
+        <menu class="menu">
+            <button class="repeat menu-button" title="Начать заного"></button>
+            <button class="setting menu-button" title="Настройки"></button>
+        </menu>
     </header>
     <main class="main">
-        
         <header class="round-info">
             <div class="size">Размер: <span class="value"></span></div>
             <div class="bomb-count">Бомб: <span class="value"></span></div>
@@ -43,7 +46,45 @@
             </table>
             <button class="button">Начать заново</button>
         </section>
-        
+        <section class="setting-window">
+            <h2 class="title">Настройки</h2>
+            <table class="setting-fields">
+                <tr>
+                    <td class="name">Размер поля</td>
+                    <td class="value">
+                        <select name="setting-size">
+                            <option value="4">4 на 4</option>
+                            <option selected value="10">10 на 10</option>
+                            <option value="20">20 на 20</option>
+                            <option value="40">40 на 40</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="name">Количество бомб</td>
+                    <td class="value">
+                        <input min="1" value="1" type="number">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="name">Отображать время</td>
+                    <td class="value">
+                        <input type="checkbox" checked id="time-input">
+                        <label class="custom-check" for="time-input"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="name">Включить анимацию</td>
+                    <td class="value">
+                        <input type="checkbox" checked id="anim-input">
+                        <label class="custom-check" for="anim-input"></label>
+                    </td>
+                </tr>
+            </table>
+            <div class="interaction">
+                <button class="button">Закрыть</button><button class="button">Сохранить</button>
+            </div>
+        </section>
     </main>
     <script type="module" src="js/main.js"></script>
 </body>
