@@ -29,5 +29,10 @@ window.onload = function () {
     //     }, 300)
     // });
 
-    let gameScene = new GameScene(dom.playingField);
+    let gameConfig = {
+        size: 10,
+        bombCount: 10
+    }
+
+    let gameScene = new GameScene(dom.playingField, gameConfig);
 }

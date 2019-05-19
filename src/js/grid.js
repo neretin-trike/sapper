@@ -15,13 +15,13 @@ export default class Grid {
 
         this._createCells();
         this._addEventListeners(playingField);
-
     }
     _addEventListeners(playingField) {
         playingField.addEventListener('click', (event) => {
             let { x, y } = getIndexByClick(event, this.cellSize);
 
             this._cellArray[x][y].checkCell(this._cellArray);
+     
         });
 
         playingField.addEventListener('contextmenu', (event) => {
@@ -42,7 +42,7 @@ export default class Grid {
                 if (prevState.x !== -1 && prevState.y !== -1) {
                     this._cellArray[prevState.x][prevState.y].outCell();
                 }
-                
+
                 prevState = { x, y };
                 this._cellArray[x][y].overCell();
             }
@@ -60,7 +60,7 @@ export default class Grid {
         for (let i = 0; i < this.width; i++) {
 
             this._cellArray[i] = [];
-
+        
             for (let j = 0; j < this.height; j++) {
 
                 if (even % 2 == 0) {
@@ -68,6 +68,12 @@ export default class Grid {
                 } else {
                     this._cellArray[i][j] = new Cell(i, j, this.context, "darkgreen", this.cellSize);
                 }
+                // this._cellArray[i][j].addEventListener("leftclick",()=> {
+                //     alert("лево");
+                // });
+                // this._cellArray[i][j].addEventListener("rightclick",(data)=> {
+                //     alert("право "+data);
+                // });
 
                 even += 1;
             }
@@ -89,7 +95,7 @@ export default class Grid {
                 cell.bomb = new Bomb(cell);
                 this._bombArray.push(cell.bomb);
                 bombCount -= 1;
-                // cell.bomb.render.call(this._cellArray[randomX][randomY]);
+                cell.bomb.render.call(this._cellArray[randomX][randomY]);
             }
         }
 

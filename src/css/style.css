@@ -3,13 +3,12 @@
 -------------------------------*/
 
 @font-face {
-    font-family: 'Intro';
-    src: url('../fonts/Intro/Intro.eot');
-    src: url('../fonts/Intro/Intro.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Intro/Intro.woff') format('woff'),
-         url('../fonts/Intro/Intro.woff2') format('woff2'),
-         url('../fonts/Intro/Intro.ttf') format('truetype'),
-         url('../fonts/Intro/Intro.svg#TimeBurner') format('svg');
+    font-family: 'Slot Cyrillic';
+    src: url('../fonts/Slot Cyrillic/Slot Cyrillic.eot');
+    src: url('../fonts/Slot Cyrillic/Slot Cyrillic.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Slot Cyrillic/Slot Cyrillic.woff') format('woff'),
+         url('../fonts/Slot Cyrillic/Slot Cyrillic.woff2') format('woff2'),
+         url('../fonts/Slot Cyrillic/Slot Cyrillic.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
@@ -20,8 +19,7 @@
     src: url('../fonts/Roboto/Roboto-Bold.eot?#iefix') format('embedded-opentype'),
          url('../fonts/Roboto/Roboto-Bold.woff') format('woff'),
          url('../fonts/Roboto/Roboto-Bold.woff2') format('woff2'),
-         url('../fonts/Roboto/Roboto-Bold.ttf') format('truetype'),
-         url('../fonts/Roboto/Roboto-Bold.svg#TimeBurner') format('svg');
+         url('../fonts/Roboto/Roboto-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
 }
@@ -32,8 +30,7 @@
     src: url('../fonts/Roboto/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
          url('../fonts/Roboto/Roboto-Medium.woff') format('woff'),
          url('../fonts/Roboto/Roboto-Medium.woff2') format('woff2'),
-         url('../fonts/Roboto/Roboto-Medium.ttf') format('truetype'),
-         url('../fonts/Roboto/Roboto-Medium.svg#TimeBurner') format('svg');
+         url('../fonts/Roboto/Roboto-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
@@ -44,8 +41,7 @@
     src: url('../fonts/Roboto/Roboto-MediumItalic.eot?#iefix') format('embedded-opentype'),
          url('../fonts/Roboto/Roboto-MediumItalic.woff') format('woff'),
          url('../fonts/Roboto/Roboto-MediumItalic.woff2') format('woff2'),
-         url('../fonts/Roboto/Roboto-MediumItalic.ttf') format('truetype'),
-         url('../fonts/Roboto/Roboto-MediumItalic.svg#TimeBurner') format('svg');
+         url('../fonts/Roboto/Roboto-MediumItalic.ttf') format('truetype');
     font-weight: 500;
     font-style: italic;
 }
@@ -56,8 +52,7 @@
     src: url('../fonts/Roboto/Roboto.eot?#iefix') format('embedded-opentype'),
          url('../fonts/Roboto/Roboto.woff') format('woff'),
          url('../fonts/Roboto/Roboto.woff2') format('woff2'),
-         url('../fonts/Roboto/Roboto.ttf') format('truetype'),
-         url('../fonts/Roboto/Roboto.svg#TimeBurner') format('svg');
+         url('../fonts/Roboto/Roboto.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
@@ -68,8 +63,7 @@
     src: url('../fonts/Roboto/Roboto-Italic.eot?#iefix') format('embedded-opentype'),
          url('../fonts/Roboto/Roboto-Italic.woff') format('woff'),
          url('../fonts/Roboto/Roboto-Italic.woff2') format('woff2'),
-         url('../fonts/Roboto/Roboto-Italic.ttf') format('truetype'),
-         url('../fonts/Roboto/Roboto-Italic.svg#TimeBurner') format('svg');
+         url('../fonts/Roboto/Roboto-Italic.ttf') format('truetype');
     font-weight: 400;
     font-style: italic;
 }
@@ -87,11 +81,15 @@
     --font-color-light: #474747;
 }
 
+/*-------------------------------
+-------- GENERAL STYLE ----------
+-------------------------------*/
+
 html {
     font-size: 62.5%; }
   
 body {
-    height: 100vh;
+    height: 100%;
 
     background-color: #231b2c;
 
@@ -100,19 +98,13 @@ body {
 
     font-size: 1.4rem;
     position: relative;
-    max-width: 192.0rem;
+    max-width: 66.0rem;
     margin: 0 auto; 
 }
 
 * {
     box-sizing: border-box;
     /* border: 1px solid orangered; */
-}
-
-figure {
-    padding: 0;
-    padding: 0;
-    margin: 0; 
 }
 
 button {
@@ -129,15 +121,6 @@ input {
     border: none; 
 }
 
-a {
-    text-decoration: none;
-    color: inherit; 
-}
-
-a:hover {
-    color: var(--second-color-dark);
-}
-
 h1, h2, h3, p, blockquote {
     margin: 0; 
 }
@@ -148,7 +131,32 @@ ul {
 }
 
 /*-------------------------------
--------- GENERAL STYLES ---------
+--------- HEADER STYLES ---------
+-------------------------------*/
+
+.header {
+    font-family: "Slot Cyrillic";
+    color: white;
+}
+
+.logo {
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 10rem;
+    line-height: 8rem;
+    font-weight: 400;
+}
+
+.logo img {
+    width: 7rem;
+}
+
+/*-------------------------------
+---------- MAIN STYLES ----------
 -------------------------------*/
 
 .main {
@@ -169,4 +177,5 @@ ul {
     transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     will-change: transform;
 }
+
 

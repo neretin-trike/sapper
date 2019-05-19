@@ -1,8 +1,11 @@
 import { getDirections } from "./utils.js"
+import EventBus from "./gameState.js";
 
 export default class Cell {
     constructor(x, y, context, color, cellSize) {
         this._number = 0;
+        this._eventBus = new EventBus();
+        // this._callbackList = {};
 
         this.isMakred = false;
         this.isOpen = false;
@@ -14,7 +17,6 @@ export default class Cell {
         this.globalX = this.x * this.size;
         this.globalY = this.y * this.size;
         this.color = color;
-
 
         this._renderCell(this.color);
     }
@@ -57,23 +59,41 @@ export default class Cell {
 
             if (this.bomb !== null) {
                 this.bomb.render();
+                this._eventBus.mediator.emitEvent("boom");
+
             } else if (this.number === 0) {
                 this.lookAround(cellArray);
             } else {
                 this.displayNumber();
             }
         }
+
+        // this._callbackList["leftclick"]();
     }
     markCell() {
         if (this.isOpen === false) {
             this.isMakred = !this.isMakred;
 
             if (this.isMakred) {
-                this._renderText("orange","✖")
+                this._renderText("orange","✖");
+
+                this._eventBus.mediator.emitEvent("markSet");
+                if (this.bomb !== null) {
+                    this._eventBus.mediator.emitEvent("bombFind");
+                }
+
             } else {
                 this.overCell();
+
+                this._eventBus.mediator.emitEvent("markUnset");
+                if (this.bomb !== null) {
+                    this._eventBus.mediator.emitEvent("bombUnFind");
+                }
+
             }
         }
+
+        // this._callbackList["rightclick"](this.bomb);
     }
     overCell() {
         this._renderHoverEffect("#57cb57");
@@ -116,4 +136,7 @@ export default class Cell {
             }
         }
     }
+    // addEventListener(name, callback) {
+    //     this._callbackList[name] = callback;
+    // }
 }
