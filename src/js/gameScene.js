@@ -7,6 +7,6 @@ export default class GameScene {
         const context = playingField.getContext("2d");
 
         this.grid = new Grid(size, size, playingField, context, bombCount);
-        this.gameOverWindow = new GameOverWindow(bombCount, gameOverWindow);
+        this.gameOverWindow = new GameOverWindow(size, bombCount, gameOverWindow);
     }
 }
