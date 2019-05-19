@@ -1,27 +1,39 @@
 import Bomb from "./bomb.js";
 import Cell from "./cell.js";
+import EventBus from "./eventBus.js";
 
 import { getRandomArbitrary, getIndexByClick } from "./utils.js"
 
 export default class Grid {
-    constructor(width, height, playingField, context) {
+    constructor(width, height, playingField, context, bombCount) {
+        this._eventBus = new EventBus();
         this._cellArray = [];
         this._bombArray = [];
 
+        this.bombCount = bombCount; 
         this.context = context;
         this.height = height;
         this.width = width;
         this.cellSize = 650 / this.width;
 
         this._createCells();
+        this._placeBombs();
+
         this._addEventListeners(playingField);
+        this._eventBus.addEventListener("restart", ()=>this.restart());
+    }
+    restart() {
+        this._cellArray = [];
+        this._bombArray = [];
+
+        this._createCells();
+        this._placeBombs();
     }
     _addEventListeners(playingField) {
         playingField.addEventListener('click', (event) => {
             let { x, y } = getIndexByClick(event, this.cellSize);
 
             this._cellArray[x][y].checkCell(this._cellArray);
-     
         });
 
         playingField.addEventListener('contextmenu', (event) => {
@@ -74,8 +86,8 @@ export default class Grid {
             even += 1;
         }
     }
-    placeBombs(count) {
-        let bombCount = count;
+    _placeBombs() {
+        let bombCount = this.bombCount;
 
         while (bombCount) {
 

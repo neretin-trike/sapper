@@ -4,7 +4,7 @@ window.onload = function () {
 
     const dom = {
         playingField: document.getElementById("playing-field"),
-        // fieldWrapper: document.querySelector(".field-wrapper")
+        gameOverWindow: document.querySelector(".game-over-window")
     }
 
     dom.playingField.width = 650;
@@ -33,6 +33,7 @@ window.onload = function () {
     let gameConfig = {
         size: 10,
         bombCount: 10,
+        gameOverWindow: dom.gameOverWindow,
         playingField: dom.playingField
     }
 

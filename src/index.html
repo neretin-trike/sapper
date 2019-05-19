@@ -20,17 +20,21 @@
     <main class="main">
 
         <canvas id="playing-field"></canvas>
-        
-        <section class="field-overlay">
-            <h2 class="game-status">Игра выиграна!</h2>
+
+        <section class="game-over-window hidden">
+            <h2 class="game-status"></h2>
             <table class="game-result">
                 <tr>
-                    <td class="name">Время</td>
-                    <td class="value">00:15</td>
+                    <td class="name">Время затрачено</td>
+                    <td class="value"></td>
                 </tr>
                 <tr>
-                    <td class="name">Меток</td>
-                    <td class="value">10</td>
+                    <td class="name">Меток использовано</td>
+                    <td class="value"></td>
+                </tr>
+                <tr>
+                    <td class="name">Бомб осталось</td>
+                    <td class="value"></td>
                 </tr>
             </table>
             <button class="button">Начать заново</button>

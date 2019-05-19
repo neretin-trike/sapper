@@ -169,18 +169,30 @@ ul {
 }
 
 /*-------------------------------
---------- FIELD OVERLAY ---------
+-------- GAMOOVER WINDOW --------
 -------------------------------*/
 
-.field-overlay {
+.game-over-window.hidden {
+    display: none;
+}
+
+.lose {
+    color: #fe1949;
+}
+
+.win {
     color: greenyellow;
+}
+
+.game-over-window {
 
     position: absolute;
     width: 65rem;
     height: 65rem;
     border-radius: 1.5rem;
 
-    background: rgb(35,27,44,0.75);
+    opacity: 1;
+    background: rgb(35,27,44,0.85);
 
     display: flex;
     align-items: center;
@@ -188,20 +200,20 @@ ul {
     flex-direction: column;
 }
 
-.field-overlay .game-status {
+.game-over-window .game-status {
     font-family: "Slot Cyrillic";
     font-size: 7.2rem;
     font-weight: 400;
 }
 
-.field-overlay .game-result {
+.game-over-window .game-result {
     margin: 5rem 0;
 
-    width: 36rem;
-    font-size: 3.6rem;
+    width: 40rem;
+    font-size: 3rem;
 }
 
-.field-overlay .game-result .value {
+.game-over-window .game-result .value {
     text-align: right;
 }
 
@@ -215,6 +227,11 @@ ul {
     color: greenyellow;
     text-transform: uppercase;
     text-align: center;
+}
+
+.button:hover {
+    background-color: greenyellow;
+    color: rgb(35,27,44);
 }
 
 

@@ -1,16 +1,12 @@
 import Grid from "./grid.js";
-import EventBus from "./gameState.js";
+import GameOverWindow from "./gameOverWindow.js";
 
 export default class GameScene {
     constructor(config) {
-        this._eventBus = new EventBus();
-        
-        let { size, bombCount, playingField } = config;
+        let { size, bombCount, gameOverWindow, playingField} = config;
         const context = playingField.getContext("2d");
 
-        let grid = new Grid(size, size, playingField, context);
-        grid.placeBombs(bombCount);
-
-        this._eventBus.mediator.emitEvent("setInitBombCount", bombCount);
+        this.grid = new Grid(size, size, playingField, context, bombCount);
+        this.gameOverWindow = new GameOverWindow(bombCount, gameOverWindow);
     }
 }

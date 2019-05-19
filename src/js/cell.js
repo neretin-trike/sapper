@@ -1,5 +1,5 @@
 import { getDirections } from "./utils.js"
-import EventBus from "./gameState.js";
+import EventBus from "./eventBus.js";
 
 export default class Cell {
     constructor(x, y, context, color, cellSize) {
@@ -45,7 +45,7 @@ export default class Cell {
     }
     set number(value) {
         this._number = value;
-        // this.renderNumber();
+        // this.displayNumber();
     }
     displayNumber() {
         if (this.number) {
@@ -74,11 +74,11 @@ export default class Cell {
             if (this.isMakred) {
                 this._renderText("orange","✖");
 
-                this._eventBus.mediator.emitEvent("markSet", this.bomb);
+                this._eventBus.emitEvent("markSet", this.bomb);
             } else {
                 this.overCell();
 
-                this._eventBus.mediator.emitEvent("markUnset", this.bomb);
+                this._eventBus.emitEvent("markUnset", this.bomb);
             }
         }
     }
@@ -91,7 +91,7 @@ export default class Cell {
     openCell() {
         this.isOpen = true;
 
-        this._eventBus.mediator.emitEvent("openCell", this.bomb);
+        this._eventBus.emitEvent("openCell", this.bomb);
 
         this.context.fillStyle = "PapayaWhip";
         this.context.fillRect(this.globalX, this.globalY, this.size, this.size);
@@ -118,7 +118,7 @@ export default class Cell {
                         }, 50 );
     
                     } else if (cellArray[x][y].number !== undefined) {
-                        
+
                         cellArray[x][y].openCell();
                         cellArray[x][y].displayNumber();
                     }
