@@ -21,3 +21,24 @@ export const getIndexByClick = (event, size) => {
 
     return { x, y };
 }
+
+export const loadFromLocalStorage = (key) => {
+    try {
+        const serializedState = localStorage.getItem(key);
+        if (serializedState === null) {
+            return undefined;
+        }
+        return JSON.parse(serializedState);
+    } catch (error) {
+        return undefined;
+    }
+}
+
+export const saveToLocaleStorage = (key, data) => {
+    try {
+        const serializedState = JSON.stringify(data);
+        localStorage.setItem(key, serializedState);
+    } catch (error) { 
+        console.log(error.message);
+    }
+}

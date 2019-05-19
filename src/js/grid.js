@@ -5,16 +5,17 @@ import EventBus from "./eventBus.js";
 import { getRandomArbitrary, getIndexByClick } from "./utils.js"
 
 export default class Grid {
-    constructor(width, height, playingField, context, bombCount) {
+    constructor(size, playingField, context, bombCount, enabledAnimation) {
         this._eventBus = new EventBus();
         this._cellArray = [];
         this._bombArray = [];
 
-        this.bombCount = bombCount; 
         this.context = context;
-        this.height = height;
-        this.width = width;
-        this.cellSize = 650 / this.width;
+        this.bombCount = bombCount; 
+        this.height = size;
+        this.width = size;
+        this.cellSize = 650 / size;
+        this.enabledAnimation = enabledAnimation;
 
         this._createCells();
         this._placeBombs();
@@ -66,26 +67,27 @@ export default class Grid {
             prevState = { x: -1, y: -1 };
         });
 
-        
-        // playingField.addEventListener('click', (event) => {
-        //     let vX = (-325 + event.offsetX) > 0 ? 1 : -1;
-        //     let vY = (325 - event.offsetY) > 0 ? 1 : -1;
+        if (this.enabledAnimation) {
+            playingField.addEventListener('click', (event) => {
+                let vX = (-325 + event.offsetX) > 0 ? 1 : -1;
+                let vY = (325 - event.offsetY) > 0 ? 1 : -1;
 
-        //     let lengthX = Math.abs(325 - event.offsetX);
-        //     let lengthY = Math.abs(325 - event.offsetY);
+                let lengthX = Math.abs(325 - event.offsetX);
+                let lengthY = Math.abs(325 - event.offsetY);
 
-        //     let propX = (lengthX * 15) / 325;
-        //     let propY = (lengthY * 15) / 325;
+                let propX = (lengthX * 15) / 325;
+                let propY = (lengthY * 15) / 325;
 
-        //     let rotX = propX * vY;
-        //     let rotY = propY * vX;
+                let rotX = propX * vY;
+                let rotY = propY * vX;
 
-        //     playingField.style.transform = `perspective(1300px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+                playingField.style.transform = `perspective(1300px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
 
-        //     setTimeout(() => {
-        //         playingField.style.transform = "perspective(1300px) rotateX(0deg) rotateY(0deg)";
-        //     }, 350)
-        // });
+                setTimeout(() => {
+                    playingField.style.transform = "perspective(1300px) rotateX(0deg) rotateY(0deg)";
+                }, 350)
+            });
+        }
     }
     _createCells() {
 

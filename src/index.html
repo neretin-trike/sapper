@@ -27,7 +27,7 @@
             <div class="bomb-count">Бомб: <span class="value"></span></div>
             <div class="time">Время: <span class="value">0</span></div>
         </header>
-        <canvas id="playing-field"></canvas>
+        <canvas width="650" height="650" id="playing-field"></canvas>
         <section class="game-over-window hidden">
             <h2 class="game-status"></h2>
             <table class="game-result">
@@ -46,13 +46,13 @@
             </table>
             <button class="button">Начать заново</button>
         </section>
-        <section class="setting-window">
+        <section class="setting-window hidden">
             <h2 class="title">Настройки</h2>
             <table class="setting-fields">
                 <tr>
                     <td class="name">Размер поля</td>
                     <td class="value">
-                        <select name="setting-size">
+                        <select class="setting-size">
                             <option value="4">4 на 4</option>
                             <option selected value="10">10 на 10</option>
                             <option value="20">20 на 20</option>
@@ -63,26 +63,27 @@
                 <tr>
                     <td class="name">Количество бомб</td>
                     <td class="value">
-                        <input min="1" value="1" type="number">
+                        <input class="setting-bomb" min="1" value="1" type="number">
                     </td>
                 </tr>
                 <tr>
                     <td class="name">Отображать время</td>
                     <td class="value">
-                        <input type="checkbox" checked id="time-input">
+                        <input class="setting-time" type="checkbox" id="time-input">
                         <label class="custom-check" for="time-input"></label>
                     </td>
                 </tr>
                 <tr>
                     <td class="name">Включить анимацию</td>
                     <td class="value">
-                        <input type="checkbox" checked id="anim-input">
+                        <input class="setting-animation" type="checkbox" id="anim-input">
                         <label class="custom-check" for="anim-input"></label>
                     </td>
                 </tr>
             </table>
+            <div class="hint">После сохранения данных страница перезагрузится</div>
             <div class="interaction">
-                <button class="button">Закрыть</button><button class="button">Сохранить</button>
+                <button class="button close">Закрыть</button><button class="button save">Сохранить</button>
             </div>
         </section>
     </main>

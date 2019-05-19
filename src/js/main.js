@@ -1,23 +1,26 @@
 import GameScene from "./gameScene.js";
+import { loadFromLocalStorage } from "./utils.js";
 
 window.onload = function () {
 
-    const dom = {
+    const domList = {
         roundInfo: document.querySelector(".round-info"),
         playingField: document.getElementById("playing-field"),
-        gameOverWindow: document.querySelector(".game-over-window")
+        gameOverWindow: document.querySelector(".game-over-window"),
+        settingWindow: document.querySelector(".setting-window"),
+        repeatButton: document.querySelector(".repeat.menu-button"),
+        settingButton: document.querySelector(".setting.menu-button")
     }
 
-    dom.playingField.width = 650;
-    dom.playingField.height = 650;
-
-    let gameConfig = {
-        size: 10,
-        bombCount: 10,
-        roundInfo: dom.roundInfo,
-        gameOverWindow: dom.gameOverWindow,
-        playingField: dom.playingField
+    let gameSetting = loadFromLocalStorage("setting");
+    if (gameSetting === undefined) {
+        gameSetting = {
+            size: 10,
+            bombCount: 10,
+            displayTime: true,
+            enabledAnimation: false
+        }
     }
 
-    let gameScene = new GameScene(gameConfig);
+    let gameScene = new GameScene(domList, gameSetting);
 }

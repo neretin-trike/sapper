@@ -319,7 +319,7 @@ ul {
     line-height: 5rem;
 }
 
-.setting-window .setting-fields td:last-child {
+.setting-window .setting-fields .value {
     vertical-align: middle;
     text-align: right;
     width: 12.5rem;
@@ -343,6 +343,10 @@ ul {
     box-shadow: 0 0 8rem 0 black;
     transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     /* transition: transform 0.3s cubic-bezier(.17,.89,.53,1.77); */
+}
+
+.hidden {
+    display: none;
 }
 
 .button {
