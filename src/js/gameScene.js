@@ -2,10 +2,10 @@ import Grid from "./grid.js";
 import EventBus from "./gameState.js";
 
 export default class GameScene {
-    constructor(playingField, config) {
+    constructor(config) {
         this._eventBus = new EventBus();
         
-        let { size, bombCount } = config;
+        let { size, bombCount, playingField } = config;
         const context = playingField.getContext("2d");
 
         let grid = new Grid(size, size, playingField, context);

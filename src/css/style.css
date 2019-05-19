@@ -166,16 +166,20 @@ ul {
     justify-content: center;
 }
   
+.main .field-wrapper {
+
+
+    /* will-change: transform; */
+    overflow: hidden;
+}
+
 #playing-field {
-    display: block;
     border: 0.4rem solid darkgreen;
     border-radius: 1.5rem;
 
     box-shadow: 0 0 8rem 0 black;
-
-    /* transition: transform 0.3s cubic-bezier(.17,.89,.53,1.77); */
     transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: transform;
+    /* transition: transform 0.3s cubic-bezier(.17,.89,.53,1.77); */
 }
 
 

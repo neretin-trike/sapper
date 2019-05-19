@@ -5,7 +5,6 @@ export default class Cell {
     constructor(x, y, context, color, cellSize) {
         this._number = 0;
         this._eventBus = new EventBus();
-        // this._callbackList = {};
 
         this.isMakred = false;
         this.isOpen = false;
@@ -55,20 +54,18 @@ export default class Cell {
     }
     checkCell(cellArray) {
         if (this.isOpen === false) {
-            this.openCell();
 
+            this.openCell();
+            
             if (this.bomb !== null) {
                 this.bomb.render();
-                this._eventBus.mediator.emitEvent("boom");
-
+                
             } else if (this.number === 0) {
                 this.lookAround(cellArray);
             } else {
                 this.displayNumber();
             }
         }
-
-        // this._callbackList["leftclick"]();
     }
     markCell() {
         if (this.isOpen === false) {
@@ -77,23 +74,13 @@ export default class Cell {
             if (this.isMakred) {
                 this._renderText("orange","✖");
 
-                this._eventBus.mediator.emitEvent("markSet");
-                if (this.bomb !== null) {
-                    this._eventBus.mediator.emitEvent("bombFind");
-                }
-
+                this._eventBus.mediator.emitEvent("markSet", this.bomb);
             } else {
                 this.overCell();
 
-                this._eventBus.mediator.emitEvent("markUnset");
-                if (this.bomb !== null) {
-                    this._eventBus.mediator.emitEvent("bombUnFind");
-                }
-
+                this._eventBus.mediator.emitEvent("markUnset", this.bomb);
             }
         }
-
-        // this._callbackList["rightclick"](this.bomb);
     }
     overCell() {
         this._renderHoverEffect("#57cb57");
@@ -103,6 +90,8 @@ export default class Cell {
     }
     openCell() {
         this.isOpen = true;
+
+        this._eventBus.mediator.emitEvent("openCell", this.bomb);
 
         this.context.fillStyle = "PapayaWhip";
         this.context.fillRect(this.globalX, this.globalY, this.size, this.size);
@@ -119,24 +108,24 @@ export default class Cell {
             let [x, y] = item;
 
             try {
-                if (cellArray[x][y].number === 0) {
-                    cellArray[x][y].number = undefined;
-
-                    setTimeout( () => {
+                if (cellArray[x][y].isOpen === false) {
+                    if (cellArray[x][y].number === 0) {
+                        cellArray[x][y].number = undefined;
+    
+                        setTimeout( () => {
+                            cellArray[x][y].openCell();
+                            cellArray[x][y].lookAround(cellArray);
+                        }, 50 );
+    
+                    } else if (cellArray[x][y].number !== undefined) {
+                        
                         cellArray[x][y].openCell();
-                        cellArray[x][y].lookAround(cellArray);
-                    }, 50 );
-
-                } else {
-                    cellArray[x][y].openCell();
-                    cellArray[x][y].displayNumber();
+                        cellArray[x][y].displayNumber();
+                    }
                 }
             } catch {
                 continue;
             }
         }
     }
-    // addEventListener(name, callback) {
-    //     this._callbackList[name] = callback;
-    // }
 }

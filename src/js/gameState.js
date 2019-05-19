@@ -20,7 +20,8 @@ export default class EventBus {
         this.gameInfo = {
             time: 0,
             bombLeft: 0,
-            markUsed: 0
+            markUsed: 0,
+            countOpen: 0
         }
 
         this.mediator = new Mediator();
@@ -28,21 +29,38 @@ export default class EventBus {
         this.mediator.addEventListener("setInitBombCount", (bombCount)=> {
             this.gameInfo.bombLeft = bombCount;
         })
-        this.mediator.addEventListener("markSet", ()=> {
+        this.mediator.addEventListener("markSet", (bomb)=> {
             this.gameInfo.markUsed += 1;
+
+            if (bomb !== null) {
+                this.gameInfo.bombLeft -= 1;
+            }
+
+            if (this.gameInfo.bombLeft === 0) {
+                alert("ИГРА ВЫИГРАНА, ДУРЖОК");
+                console.log(this.gameInfo);
+            }
         })
-        this.mediator.addEventListener("markUnset", ()=> {
+        this.mediator.addEventListener("markUnset", (bomb)=> {
             this.gameInfo.markUsed -= 1;
+
+            if (bomb !== null) {
+                this.gameInfo.bombLeft += 1;
+            }
         })
-        this.mediator.addEventListener("bombFind", ()=> {
-            this.gameInfo.bombLeft -= 1;
-        })
-        this.mediator.addEventListener("bombUnFind", ()=> {
-            this.gameInfo.bombLeft += 1;
-        })
-        this.mediator.addEventListener("boom", ()=> {
-            alert("ПРОИЗОШОЛ БУМ");
-            console.log(this.gameInfo);
+        this.mediator.addEventListener("openCell", (bomb)=> {
+
+            this.gameInfo.countOpen += 1;
+
+            if (this.gameInfo.countOpen === 90) {
+                alert("ИГРА ВЫИГРАНА, ДУРЖОК");
+                console.log(this.gameInfo);
+            }
+
+            if (bomb !== null) {
+                alert("ИГРА ПРОИГРАНА, ДУРЖОК");
+                console.log(this.gameInfo);
+            }
         })
 
         EventBus._instance = this;

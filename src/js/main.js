@@ -4,6 +4,7 @@ window.onload = function () {
 
     const dom = {
         playingField: document.getElementById("playing-field"),
+        // fieldWrapper: document.querySelector(".field-wrapper")
     }
 
     dom.playingField.width = 650;
@@ -26,13 +27,14 @@ window.onload = function () {
 
     //     setTimeout(() => {
     //         dom.playingField.style.transform = "perspective(1300px) rotateX(0deg) rotateY(0deg)";
-    //     }, 300)
+    //     }, 350)
     // });
 
     let gameConfig = {
         size: 10,
-        bombCount: 10
+        bombCount: 10,
+        playingField: dom.playingField
     }
 
-    let gameScene = new GameScene(dom.playingField, gameConfig);
+    let gameScene = new GameScene(gameConfig);
 }
