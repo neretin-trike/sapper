@@ -16,11 +16,19 @@ export default class Cell {
         this.color = color;
 
 
-        this._renderCell();
+        this._renderCell(this.color);
     }
-    _renderCell = () => {
-        this.context.fillStyle = this.color;
+    _renderCell(color) {
+        this.context.fillStyle = color;
         this.context.fillRect(this.globalX, this.globalY, this.size, this.size);
+    }
+    _renderText(color, text) {
+        let offset = this.size / 2;
+        let fontSize = (28 * this.size) / 65;
+
+        this.context.font = `${fontSize}px Arial `;
+        this.context.fillStyle = color;
+        this.context.fillText(text, this.globalX + (offset / 1.5), this.globalY + (offset * 1.25));
     }
     get number() {
         return this._number;
@@ -35,7 +43,6 @@ export default class Cell {
 
             if (this.bomb !== null) {
                 this.bomb.render();
-                // alert("произошол проигрыш");
             } else if (this.number === 0) {
                 this.lookAround(cellArray);
             } else {
@@ -48,26 +55,44 @@ export default class Cell {
 
         if (this.isOpen === false) {
             if (this.isMakred) {
-                let offset = this.size / 2;
-                let fontSize = (28 * this.size) / 65;
-
-                this.context.font = `${fontSize}px Arial `;
-                this.context.fillStyle = "Orange";
-                this.context.fillText("✖", this.globalX + (offset / 1.5), this.globalY + (offset * 1.25));
+                this._renderText("orange","✖")
             } else {
-                this._renderCell();
+                this._renderCell(this.color);
             }
         }
     }
     displayNumber() {
         if (this.number) {
-            let offset = this.size / 2;
-            let fontSize = (28 * this.size) / 65;
-
-            this.context.font = `${fontSize}px Arial `;
-            this.context.fillStyle = "black";
-            this.context.fillText(this.number, this.globalX + (offset / 1.5), this.globalY + (offset * 1.25));
+            this._renderText("black", this.number);
         }
+    }
+    overCell() {
+        if (this.isOpen === false) {
+            this._renderCell("#57cb57");
+            
+            if (this.isMakred) {
+                this._renderText("orange","✖");
+            }
+        }
+    }
+    outCell() {
+        if (this.isOpen === false) {
+            this._renderCell(this.color);
+
+            if (this.isMakred) {
+                this._renderText("orange","✖");
+            }
+        }
+    }
+    openCell() {
+        this.isOpen = true;
+
+        this.context.fillStyle = "PapayaWhip";
+        this.context.fillRect(this.globalX, this.globalY, this.size, this.size);
+
+        this.context.strokeStyle = "Burlywood";
+        this.context.lineWidth = 3;
+        this.context.strokeRect(this.globalX + 1.5, this.globalY + 1.5, this.size - 3, this.size - 3);
     }
     lookAround(cellArray) {
 
@@ -89,20 +114,5 @@ export default class Cell {
                 continue;
             }
         }
-    }
-    openCell() {
-        this.isOpen = true;
-
-        this.context.fillStyle = "PapayaWhip";
-        this.context.fillRect(this.globalX, this.globalY, this.size, this.size);
-
-        this.context.strokeStyle = "Burlywood";
-        this.context.lineWidth = 3;
-        this.context.strokeRect(this.globalX + 1.5, this.globalY + 1.5, this.size - 3, this.size - 3);
-    }
-    hoverCell() {
-        // this.context.fillStyle = "LimeGreen";
-        // this.context.fillRect(this.globalX, this.globalY, this.size, this.size);
-        // console.log("asd");
     }
 }

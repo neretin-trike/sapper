@@ -14,3 +14,10 @@ export const getDirections = (x, y) => {
         [x - 1, y],
     ]
 }
+
+export const getIndexByClick = (event, size) => {
+    let x = Math.trunc(event.offsetX / size);
+    let y = Math.trunc(event.offsetY / size);
+
+    return { x, y };
+}
