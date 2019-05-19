@@ -31,7 +31,13 @@ export default class Cell {
         this.context.fillText(text, this.globalX + (offset / 1.5), this.globalY + (offset * 1.25));
     }
     _renderHoverEffect(color) {
-
+        if (this.isOpen === false) {
+            this._renderCell(color);
+            
+            if (this.isMakred) {
+                this._renderText("orange","✖");
+            }
+        }
     } 
     get number() {
         return this._number;
@@ -65,27 +71,15 @@ export default class Cell {
             if (this.isMakred) {
                 this._renderText("orange","✖")
             } else {
-                this._renderCell(this.color);
+                this.overCell();
             }
         }
     }
     overCell() {
-        if (this.isOpen === false) {
-            this._renderCell("#57cb57");
-            
-            if (this.isMakred) {
-                this._renderText("orange","✖");
-            }
-        }
+        this._renderHoverEffect("#57cb57");
     }
     outCell() {
-        if (this.isOpen === false) {
-            this._renderCell(this.color);
-
-            if (this.isMakred) {
-                this._renderText("orange","✖");
-            }
-        }
+        this._renderHoverEffect(this.color);
     }
     openCell() {
         this.isOpen = true;

@@ -1,4 +1,4 @@
-import Grid from "./grid.js";
+import GameScene from "./gameScene.js";
 
 window.onload = function () {
 
@@ -29,9 +29,5 @@ window.onload = function () {
     //     }, 300)
     // });
 
-    const ctx = dom.playingField.getContext("2d");
-
-    let grid = new Grid(10,10, dom.playingField, ctx);
-    grid.placeBombs(10);
-
+    let gameScene = new GameScene(dom.playingField);
 }
