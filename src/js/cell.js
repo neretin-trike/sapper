@@ -8,14 +8,14 @@ export default class Cell {
 
         this.isMakred = false;
         this.isOpen = false;
-        this.size = cellSize;
         this.bomb = null;
+        this.size = cellSize;
+        this.context = context;
+        this.color = color;
         this.x = x;
         this.y = y;
-        this.context = context;
         this.globalX = this.x * this.size;
         this.globalY = this.y * this.size;
-        this.color = color;
 
         this._renderCell(this.color);
     }

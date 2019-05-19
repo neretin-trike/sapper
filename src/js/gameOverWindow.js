@@ -8,6 +8,8 @@ export default class GameOverWindow {
         this.gameInfo = this._getInitialValues();
         this.gameOverWindow = dom;
 
+        this.stopWatch = this._startStopWatch();
+
         this._addEventListeners();
     }
     _getInitialValues() {
@@ -18,10 +20,18 @@ export default class GameOverWindow {
             countOpen: 0
         }
     }
+    _startStopWatch() {
+        return setInterval( () => {
+            this.gameInfo.time += 1;
+            this._eventBus.emitEvent("updateTime", this.gameInfo.time);
+        }, 1000)
+    }
     _addEventListeners() {
         let button = this.gameOverWindow.querySelector(".button");
         button.addEventListener("click", () => {
             this.gameInfo = this._getInitialValues();
+            this.stopWatch = this._startStopWatch();
+
             this.gameOverWindow.classList.add("hidden");
             this._eventBus.emitEvent("restart");
         });
@@ -59,21 +69,24 @@ export default class GameOverWindow {
         })
     }
     _showGameOverWindow(win) {
-        let header = this.gameOverWindow.querySelector(".game-status");
-        let table = this.gameOverWindow.querySelector(".game-result");
-        table.rows[0].cells[1].textContent = this.gameInfo.time;
-        table.rows[1].cells[1].textContent = this.gameInfo.markUsed;
-        table.rows[2].cells[1].textContent = this.gameInfo.bombLeft;
+        let headerDOM = this.gameOverWindow.querySelector(".game-status");
+        let tableDOM = this.gameOverWindow.querySelector(".game-result");
+
+        clearTimeout(this.stopWatch);
+
+        tableDOM.rows[0].cells[1].textContent = this.gameInfo.time;
+        tableDOM.rows[1].cells[1].textContent = this.gameInfo.markUsed;
+        tableDOM.rows[2].cells[1].textContent = this.gameInfo.bombLeft;
 
         this.gameOverWindow.classList.remove("hidden");
         if (win) {
             this.gameOverWindow.classList.add("win");
             this.gameOverWindow.classList.remove("lose");
-            header.textContent = "Вы победили!";
+            headerDOM.textContent = "Вы победили!";
         } else {
             this.gameOverWindow.classList.add("lose");
             this.gameOverWindow.classList.remove("win");
-            header.textContent = "Вы проиграли";
+            headerDOM.textContent = "Вы проиграли";
         }
     }
 }

@@ -3,6 +3,7 @@ import GameScene from "./gameScene.js";
 window.onload = function () {
 
     const dom = {
+        roundInfo: document.querySelector(".round-info"),
         playingField: document.getElementById("playing-field"),
         gameOverWindow: document.querySelector(".game-over-window")
     }
@@ -13,6 +14,7 @@ window.onload = function () {
     let gameConfig = {
         size: 10,
         bombCount: 10,
+        roundInfo: dom.roundInfo,
         gameOverWindow: dom.gameOverWindow,
         playingField: dom.playingField
     }
