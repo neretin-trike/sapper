@@ -14,7 +14,7 @@ export default class GameScene {
             displayTime,
             enabledAnimation } = gameSetting;
 
-        let { 
+        let {
             helpWindow,
             gameOverWindow,
             settingWindow,
@@ -22,25 +22,28 @@ export default class GameScene {
             helpButton,
             settingButton,
             playingField,
-            roundInfo } = domList;
+            roundInfo,
+            startNewGame } = domList;
 
         const context = playingField.getContext("2d");
 
         this.roundInfo = new RoundInfo(size, bombCount, roundInfo, displayTime);
         this.grid = new Grid(size, playingField, context, bombCount, enabledAnimation);
-
+        
         this.gameOverWindow = new GameOverWindow(size, bombCount, gameOverWindow);
         this.settingWindow = new SettingWindow(gameSetting, settingWindow, settingButton);
 
+        startNewGame.addEventListener("click", () => {
+            let parent = startNewGame.parentNode;
+            parent.classList.add("hidden");
+            this.gameOverWindow.initStopwatch();
+        });
 
         helpButton.addEventListener("click", () => {
             helpButton.classList.toggle("active");
             helpWindow.classList.toggle("hidden");
         });
         settingButton.addEventListener("click", () => {
-            // settingButton.classList.toggle("active");
-            // settingWindow.classList.toggle("hidden");
-            
             this._eventBus.emitEvent("settingShow");
         });
         repeatButton.addEventListener("click", () => {

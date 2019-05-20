@@ -11,7 +11,8 @@ window.onload = function () {
         settingWindow: document.querySelector(".setting-window"),
         helpButton: document.querySelector(".help.menu-button"),
         repeatButton: document.querySelector(".repeat.menu-button"),
-        settingButton: document.querySelector(".setting.menu-button")
+        settingButton: document.querySelector(".setting.menu-button"),
+        startNewGame: document.querySelector(".start-window .button")
     }
 
     let gameSetting = loadFromLocalStorage("setting");
@@ -20,7 +21,7 @@ window.onload = function () {
             size: 10,
             bombCount: 10,
             displayTime: true,
-            enabledAnimation: false
+            enabledAnimation: true
         }
     }
 

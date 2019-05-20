@@ -15,7 +15,11 @@ export default class EventBus {
         delete this._callbackList[event];
     }
     emitEvent(eventName, eventData) {
-        this._callbackList[eventName](eventData);
+        try {
+            this._callbackList[eventName](eventData);
+        } catch (e) {
+            console.log("Ошибка в методе " + eventName);
+        }
     }
 }
 

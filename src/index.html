@@ -29,7 +29,10 @@
             <div class="time">Время: <span class="value">0</span></div>
         </header>
         <canvas width="650" height="650" id="playing-field"></canvas>
-        <section class="game-over-window hidden">
+        <section class="start-window overlay">
+            <button class="button">Начать новую игру</button>
+        </section>
+        <section class="game-over-window hidden overlay">
             <h2 class="game-status"></h2>
             <table class="game-result">
                 <tr>
@@ -47,7 +50,7 @@
             </table>
             <button class="button">Начать заново</button>
         </section>
-        <section class="setting-window hidden">
+        <section class="setting-window hidden overlay">
             <h2 class="title">Настройки</h2>
             <table class="setting-fields">
                 <tr>
@@ -87,7 +90,7 @@
                 <button class="button close">Закрыть</button><button class="button save">Сохранить</button>
             </div>
         </section>
-        <section class="help-window hidden">
+        <section class="help-window hidden overlay">
             <h2 class="title">Инструкция</h2>
             <article class="content">
                 <div>Классическая игра Сапёр, работающая по следующим правилам:</div>

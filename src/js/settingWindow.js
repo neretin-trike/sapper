@@ -30,7 +30,6 @@ export default class SettingWindow {
                 enabledAnimation: this.animationInputDOM.checked
             }
             saveToLocaleStorage("setting", data);
-            // this._eventBus.emitEvent("restart", data);
             location.reload();
         });
 
@@ -73,7 +72,6 @@ export default class SettingWindow {
 
         this.settingMenu.classList.toggle("active");
         this.settingWindow.classList.toggle("hidden");
-        // this.settingWindow.classList.remove("hidden");
 
         this.timInputDOM = this.settingWindow.querySelector(".setting-time");
         this.animationInputDOM = this.settingWindow.querySelector(".setting-animation");

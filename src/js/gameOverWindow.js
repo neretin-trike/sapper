@@ -8,7 +8,7 @@ export default class GameOverWindow {
         this.gameInfo = this._getInitialValues();
         this.gameOverWindow = dom;
 
-        this.stopwatch = this._startStopwatch();
+        this.stopwatch = null; //this._startStopwatch();
 
         this._addEventListeners();
     }
@@ -19,6 +19,9 @@ export default class GameOverWindow {
             markUsed: 0,
             countOpen: 0
         }
+    }
+    initStopwatch() {
+        this.stopwatch = this._startStopwatch();
     }
     _startStopwatch() {
         return setInterval( () => {
@@ -71,10 +74,14 @@ export default class GameOverWindow {
             }
         })
         this._eventBus.addEventListener("stopwatchPause",()=>{
-            clearTimeout(this.stopwatch);
+            if (this.stopwatch !== null) {
+                clearTimeout(this.stopwatch);
+            }
         });
         this._eventBus.addEventListener("continuewatchPause",()=>{
-            this.stopwatch = this._startStopwatch();
+            if (this.stopwatch !== null) {
+                this.stopwatch = this._startStopwatch();
+            }
         });
     }
     _showGameOverWindow(win) {

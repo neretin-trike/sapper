@@ -21,16 +21,9 @@ export default class Grid {
         this._placeBombs();
 
         this._addEventListeners(playingField);
-        this._eventBus.addEventListener("restart", (data)=>this.restart(data));
+        this._eventBus.addEventListener("restart", ()=>this.restart());
     }
-    restart(data) {
-        // if (data) {
-        //     let {size, bombCount, enabledAnimation} =  data;
-        //     this.bombCount = bombCount;
-        //     this.enabledAnimation = enabledAnimation;
-        //     this.cellSize = 650 / size;
-        // }
-        
+    restart() {
         this._cellArray = [];
         this._bombArray = [];
 
@@ -41,7 +34,9 @@ export default class Grid {
         playingField.addEventListener('click', (event) => {
             let { x, y } = getIndexByClick(event, this.cellSize);
 
-            this._cellArray[x][y].checkCell(this._cellArray);
+            if (x < this.width && y < this.height) {
+                this._cellArray[x][y].checkCell(this._cellArray);
+            }
         });
 
         playingField.addEventListener('contextmenu', (event) => {
@@ -70,7 +65,9 @@ export default class Grid {
         });
 
         playingField.addEventListener('mouseout', (event) => {
-            this._cellArray[prevState.x][prevState.y].outCell();
+            if (prevState.x !== -1 && prevState.y !== -1) {
+                this._cellArray[prevState.x][prevState.y].outCell();
+            }
             prevState = { x: -1, y: -1 };
         });
 
