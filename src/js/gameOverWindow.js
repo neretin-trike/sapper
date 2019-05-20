@@ -29,10 +29,16 @@ export default class GameOverWindow {
     _addEventListeners() {
         let button = this.gameOverWindow.querySelector(".button");
         button.addEventListener("click", () => {
+            this.gameOverWindow.classList.add("hidden");
+
+            this._eventBus.emitEvent("restartGame");
+        });
+
+        this._eventBus.addEventListener("restartGame", ()=>{
             this.gameInfo = this._getInitialValues();
+            clearTimeout(this.stopwatch);
             this.stopwatch = this._startStopwatch();
 
-            this.gameOverWindow.classList.add("hidden");
             this._eventBus.emitEvent("restart");
         });
 
@@ -42,9 +48,6 @@ export default class GameOverWindow {
             if (bomb !== null) {
                 this.gameInfo.bombLeft -= 1;
             }
-            // if (this.gameInfo.bombLeft === 0) {
-            //     this._showGameOverWindow(true);
-            // }
         })
         this._eventBus.addEventListener("markUnset", (bomb) => {
             this.gameInfo.markUsed -= 1;

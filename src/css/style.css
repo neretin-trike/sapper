@@ -120,14 +120,11 @@ input {
     border: none; 
 }
 
-h1, h2, h3, p, blockquote {
+h1, h2, h3, p, ul,blockquote {
     margin: 0; 
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-}
+
 
 /*-------------------------------
 ------------ HEADER -------------
@@ -192,6 +189,13 @@ ul {
     background-image: url(../images/setting.png);
 }
 .menu .setting:hover{
+    background-position: 0 -5.1rem;
+}
+
+.menu .help {
+    background-image: url(../images/help.png);
+}
+.menu .help:hover{
     background-position: 0 -5.1rem;
 }
 
@@ -343,6 +347,52 @@ ul {
 .setting-window .interaction {
     padding: 0 6.5rem;
     margin-left: auto;
+}
+
+/*-------------------------------
+--------- HELP WINDOW --------
+-------------------------------*/
+
+.help-window.hidden {
+    display: none;
+}
+
+.help-window {
+    color: white;
+
+    position: absolute;
+    top: 8.25rem;
+    width: 65rem;
+    height: 65rem;
+    border-radius: 1rem;
+
+    opacity: 1;
+    background: rgb(35,27,44,0.85);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.help-window .title {
+    font-family: "Slot Cyrillic";
+    font-size: 7.2rem;
+    font-weight: 400;
+}
+
+.help-window .content {
+    margin:1.5rem 0;
+    width: 55rem;
+    font-size: 2rem;
+}
+
+.help-window .mark {
+    font-weight: 700;
+    color: #fe1949;
+}
+
+.help-window li {
+    line-height: 3rem;
 }
 
 #playing-field {

@@ -17,7 +17,8 @@
             <img src="./images/bomb.png" alt="Логотип в виде бомбы">
         </div>
         <menu class="menu">
-            <button class="repeat menu-button" title="Начать заного"></button>
+            <button class="help menu-button" title="Помощь"></button>
+            <button class="repeat menu-button" title="Новая игра"></button>
             <button class="setting menu-button" title="Настройки"></button>
         </menu>
     </header>
@@ -84,6 +85,24 @@
             <div class="hint">После сохранения данных страница перезагрузится</div>
             <div class="interaction">
                 <button class="button close">Закрыть</button><button class="button save">Сохранить</button>
+            </div>
+        </section>
+        <section class="help-window">
+            <h2 class="title">Инструкция</h2>
+            <article class="content">
+                <div>Классическая игра Сапёр, работающая по следующим правилам:</div>
+                <ul>
+                    <li>Чтобы открыть выделенную ячейу, нажмите на неё <span class="mark">левой</span> кнопкой мыши</li>
+                    <li>Что бы пометить ячейку, в которой находится бомба, нажмите её <span class="mark">правой</span> кнопкой мыши.</li>
+                    <li>Число в ячейке показывает, сколько мин скрыто вокруг данной ячейки. Это число поможет понять вам, где находятся безопасные ячейки, а где находятся бомбы.</li>
+                    <li>Если рядом с открытой ячейкой есть пустая ячейка, то она откроется автоматически.</li>
+                    <li>Если вы открыли ячейку с бомбой, то игра проиграна.</li>
+                    <li>Игра продолжается до тех пор, пока вы не откроете все не заминированные ячейки.</li>
+                </ul>
+            </article>
+            <!-- <div class="hint">После сохранения данных страница перезагрузится</div> -->
+            <div class="interaction">
+                <button class="button close">Закрыть</button>
             </div>
         </section>
     </main>

@@ -17,6 +17,7 @@ export default class GameScene {
         let { gameOverWindow,
             settingWindow,
             repeatButton,
+            helpButton,
             settingButton,
             playingField,
             roundInfo } = domList;
@@ -29,8 +30,14 @@ export default class GameScene {
         this.gameOverWindow = new GameOverWindow(size, bombCount, gameOverWindow);
         this.settingWindow = new SettingWindow(gameSetting, settingWindow);
 
+        helpButton.addEventListener("click", () => {
+            alert();
+        });
         settingButton.addEventListener("click", () => {
             this._eventBus.emitEvent("settingShow");
+        });
+        repeatButton.addEventListener("click", () => {
+            this._eventBus.emitEvent("restartGame");
         });
     }
 }

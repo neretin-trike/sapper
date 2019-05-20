@@ -8,6 +8,7 @@ window.onload = function () {
         playingField: document.getElementById("playing-field"),
         gameOverWindow: document.querySelector(".game-over-window"),
         settingWindow: document.querySelector(".setting-window"),
+        helpButton: document.querySelector(".help.menu-button"),
         repeatButton: document.querySelector(".repeat.menu-button"),
         settingButton: document.querySelector(".setting.menu-button")
     }
