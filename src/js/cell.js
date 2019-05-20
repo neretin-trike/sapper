@@ -1,6 +1,16 @@
 import { getDirections } from "./utils.js"
 import EventBus from "./eventBus.js";
 
+/*
+    Реализация класса клетки, имеет открытые методы:
+    - Отрисовать цифру у клетки (displayNumber);
+    - Проверить тип клетки (checkCell);
+    - Отметить клетку (markCell);
+    - Выделить клетку (overCell);
+    - Снять выделение с клетки (outCell);
+    - Открыть клетку (openCell);
+    - Алгорит поиска и открытия пустых клеток (lookAround);
+*/
 export default class Cell {
     constructor(x, y, context, color, cellSize) {
         this._number = 0;

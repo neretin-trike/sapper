@@ -1,6 +1,10 @@
 import EventBus from "./eventBus.js";
 import { saveToLocaleStorage, isNumeric } from "./utils.js";
 
+/*
+    Реализация класса окна настроек игры, отображает текущие 
+    настройки и позволяет их изменять
+*/
 export default class SettingWindow {
     constructor(setting, dom, settingMenu) {
         this._eventBus = new EventBus();

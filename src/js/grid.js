@@ -4,6 +4,10 @@ import EventBus from "./eventBus.js";
 
 import { getRandomArbitrary, getIndexByClick } from "./utils.js"
 
+/*
+    Реализация класса сетки, имеет открытые методы:
+    - Перерисовать сетку с новым расположением бомб (restart);
+*/
 export default class Grid {
     constructor(size, playingField, context, bombCount, enabledAnimation) {
         this._eventBus = new EventBus();
@@ -14,7 +18,7 @@ export default class Grid {
         this.width = size;
         this.context = context;
         this.bombCount = bombCount; 
-        this.cellSize = 650 / size;
+        this.cellSize = 650 / size; // где 650 - размер canvas
         this.enabledAnimation = enabledAnimation;
 
         this._createCells();
@@ -34,16 +38,18 @@ export default class Grid {
         playingField.addEventListener('click', (event) => {
             let { x, y } = getIndexByClick(event, this.cellSize);
 
-            if (x < this.width && y < this.height) {
+            if (x < this.width && y < this.height) { // если найденные индексы в пределах размера сетки
                 this._cellArray[x][y].checkCell(this._cellArray);
             }
         });
 
         playingField.addEventListener('contextmenu', (event) => {
             let { x, y } = getIndexByClick(event, this.cellSize);
-
             event.preventDefault();
-            this._cellArray[x][y].markCell();
+
+            if (x < this.width && y < this.height) { // если найденные индексы в пределах размера сетки
+                this._cellArray[x][y].markCell();
+            }
         });
 
         let prevState = { x: -1, y: -1 };
@@ -52,7 +58,7 @@ export default class Grid {
             let { x, y } = getIndexByClick(event, this.cellSize);
 
             if ((x < this.width && y < this.height) &&
-                (prevState.x !== x || prevState.y !== y)) {
+                (prevState.x !== x || prevState.y !== y)) { // если текующие значения индексов не равны предыдущим
 
                 if (prevState.x !== -1 && prevState.y !== -1) {
                     this._cellArray[prevState.x][prevState.y].outCell();
@@ -61,7 +67,6 @@ export default class Grid {
                 prevState = { x, y };
                 this._cellArray[x][y].overCell();
             }
-
         });
 
         playingField.addEventListener('mouseout', (event) => {
@@ -71,7 +76,7 @@ export default class Grid {
             prevState = { x: -1, y: -1 };
         });
 
-        if (this.enabledAnimation) {
+        if (this.enabledAnimation) { // эксперементальная функция для создания 3D эффекта 
             playingField.addEventListener('click', (event) => {
                 let vX = (-325 + event.offsetX) > 0 ? 1 : -1;
                 let vY = (325 - event.offsetY) > 0 ? 1 : -1;

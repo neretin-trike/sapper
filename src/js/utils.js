@@ -1,3 +1,12 @@
+/*
+    Модуль с набором утилит:
+    - Получить случайное число в указанных пределах (getRandomArbitrary);
+    - Получить координаты клеток во круг себя (getDirections);
+    - Загрузить данные из localStorage (loadFromLocalStorage);
+    - Сохранить данные в localStorage (saveToLocaleStorage);
+    - Проверить значение на число (isNumeric);
+*/
+
 export const getRandomArbitrary = (min, max) => {
     return Math.ceil(Math.random() * (max - min) + min);
 }

@@ -1,6 +1,11 @@
 import GameScene from "./gameScene.js";
 import { loadFromLocalStorage } from "./utils.js";
 
+/*
+    Точка входа в приложение, в которой происходит
+    поиск необходимых DOM элементов; загрузка настроек 
+    из localStorage и создание игровой сцены
+*/
 window.onload = function () {
 
     const domList = {

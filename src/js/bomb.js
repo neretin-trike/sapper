@@ -1,5 +1,10 @@
 import { getDirections } from "./utils.js"
 
+/*
+    Реализация класса бомбы, имеет открытые методы:
+    - Отрисовать бомбу (render);
+    - Расставить цифры во круг себя (lookAround);
+*/
 export default class Bomb {
     constructor(cell) {
         let { context, globalX, globalY, x, y, size } = cell;
@@ -12,8 +17,8 @@ export default class Bomb {
         this.globalY = globalY;
     }
     render() {
-        let offset = this.size/2;
-        let radius = (10 * this.size) / 65;
+        let offset = this.size / 2; 
+        let radius = (10 * this.size) / 65; // где 65 - эталонный размер ячейки, а 10 - эталонный радиус
 
         this.context.beginPath();
         this.context.fillStyle = "Crimson";

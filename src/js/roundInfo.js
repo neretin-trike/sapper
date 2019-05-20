@@ -1,5 +1,10 @@
 import EventBus from "./eventBus.js";
 
+/*
+    Реализация класса информации о раунде,
+    в которой отображается: размер сетки, количество бомб 
+    и количество потраченного времени.
+*/
 export default class RoundInfo {
     constructor(size, bombCount, dom, displayTime) {
         this._eventBus = new EventBus();
@@ -8,10 +13,10 @@ export default class RoundInfo {
 
         this.roundInfo = dom;
 
-        this._valuesRender();
+        this._mapValues();
         this._addEventListeners(displayTime);
     }
-    _valuesRender() {
+    _mapValues() {
         let sizeValueDOM = this.roundInfo.querySelector(".size .value");
         let bombCountValueDOM = this.roundInfo.querySelector(".bomb-count .value");
 

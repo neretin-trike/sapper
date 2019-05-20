@@ -1,3 +1,10 @@
+
+/*
+    Реализация класса паттерна Шина событий, имеет открытые методы:
+    - Подписаться на события (addEventListener);
+    - Отписаться от событий (removeEventListener);
+    - Вызвать события (emitEvent);
+*/
 export default class EventBus {
     constructor() {
         if (EventBus._instance) {

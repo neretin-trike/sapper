@@ -1,5 +1,9 @@
 import EventBus from "./eventBus.js";
 
+/*
+    Реализация класса окна окончания игры, имеет открытые методы:
+    - Инициировать запуск секундомера (initStopwatch);
+*/
 export default class GameOverWindow {
     constructor(size, bombCount, dom) {
         this._eventBus = new EventBus();
@@ -8,9 +12,12 @@ export default class GameOverWindow {
         this.gameInfo = this._getInitialValues();
         this.gameOverWindow = dom;
 
-        this.stopwatch = null; //this._startStopwatch();
+        this.stopwatch = null; 
 
         this._addEventListeners();
+    }
+    initStopwatch() {
+        this.stopwatch = this._startStopwatch();
     }
     _getInitialValues() {
         return {
@@ -19,9 +26,6 @@ export default class GameOverWindow {
             markUsed: 0,
             countOpen: 0
         }
-    }
-    initStopwatch() {
-        this.stopwatch = this._startStopwatch();
     }
     _startStopwatch() {
         return setInterval( () => {
@@ -63,7 +67,7 @@ export default class GameOverWindow {
 
             this.gameInfo.countOpen += 1;
 
-            let maxCellOpen = this.size * this.size - this.bombCount;
+            let maxCellOpen = this.size * this.size - this.bombCount; // максимальное количество открытых клеток, нужное для победы
 
             if (this.gameInfo.countOpen === maxCellOpen) {
                 this._showGameOverWindow(true);
