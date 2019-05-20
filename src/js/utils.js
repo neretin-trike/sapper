@@ -38,7 +38,11 @@ export const saveToLocaleStorage = (key, data) => {
     try {
         const serializedState = JSON.stringify(data);
         localStorage.setItem(key, serializedState);
-    } catch (error) { 
+    } catch (error) {
         console.log(error.message);
     }
+}
+
+export const isNumeric = (n) => {
+    return !isNaN(parseFloat(n)) && isFinite(n);
 }

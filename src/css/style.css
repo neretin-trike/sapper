@@ -331,6 +331,15 @@ ul {
     font-size: 2rem;
 } 
 
+.setting-window .hint {
+    text-align: left;
+    font-family: "Roboto";
+    font-style: italic;
+    font-size: 1.8rem;
+
+    margin-bottom: 2.5rem;
+}
+
 .setting-window .interaction {
     padding: 0 6.5rem;
     margin-left: auto;

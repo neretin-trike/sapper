@@ -8,7 +8,7 @@ export default class GameOverWindow {
         this.gameInfo = this._getInitialValues();
         this.gameOverWindow = dom;
 
-        this.stopWatch = this._startStopWatch();
+        this.stopwatch = this._startStopwatch();
 
         this._addEventListeners();
     }
@@ -20,7 +20,7 @@ export default class GameOverWindow {
             countOpen: 0
         }
     }
-    _startStopWatch() {
+    _startStopwatch() {
         return setInterval( () => {
             this.gameInfo.time += 1;
             this._eventBus.emitEvent("updateTime", this.gameInfo.time);
@@ -30,7 +30,7 @@ export default class GameOverWindow {
         let button = this.gameOverWindow.querySelector(".button");
         button.addEventListener("click", () => {
             this.gameInfo = this._getInitialValues();
-            this.stopWatch = this._startStopWatch();
+            this.stopwatch = this._startStopwatch();
 
             this.gameOverWindow.classList.add("hidden");
             this._eventBus.emitEvent("restart");
@@ -67,12 +67,18 @@ export default class GameOverWindow {
                 this._showGameOverWindow(false);
             }
         })
+        this._eventBus.addEventListener("stopwatchPause",()=>{
+            clearTimeout(this.stopwatch);
+        });
+        this._eventBus.addEventListener("continuewatchPause",()=>{
+            this.stopwatch = this._startStopwatch();
+        });
     }
     _showGameOverWindow(win) {
         let headerDOM = this.gameOverWindow.querySelector(".game-status");
         let tableDOM = this.gameOverWindow.querySelector(".game-result");
 
-        clearTimeout(this.stopWatch);
+        clearTimeout(this.stopwatch);
 
         tableDOM.rows[0].cells[1].textContent = this.gameInfo.time;
         tableDOM.rows[1].cells[1].textContent = this.gameInfo.markUsed;

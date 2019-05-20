@@ -1,5 +1,5 @@
 import EventBus from "./eventBus.js";
-import { saveToLocaleStorage } from "./utils.js";
+import { saveToLocaleStorage, isNumeric } from "./utils.js";
 
 export default class SettingWindow {
     constructor(setting, dom) {
@@ -16,7 +16,7 @@ export default class SettingWindow {
 
         buttonClose.addEventListener("click", () => {
             this.settingWindow.classList.add("hidden");
-
+            this._eventBus.emitEvent("continuewatchPause");
         });
         buttonSave.addEventListener("click", () => {
             this.settingWindow.classList.add("hidden");
@@ -27,12 +27,40 @@ export default class SettingWindow {
                 displayTime: this.timInputDOM.checked,
                 enabledAnimation: this.animationInputDOM.checked
             }
-            saveToLocaleStorage("setting", data)
+            saveToLocaleStorage("setting", data);
+            // this._eventBus.emitEvent("restart", data);
             location.reload();
         });
 
         this._eventBus.addEventListener("settingShow", () => {
             this._showSettingWindow();
+            this._eventBus.emitEvent("stopwatchPause");
+        })
+
+        this.sizeInputDOM = this.settingWindow.querySelector(".setting-size");
+        this.bombInputDOM = this.settingWindow.querySelector(".setting-bomb");
+
+        this.sizeInputDOM.addEventListener("change", () => {
+            let bombIntValue = parseInt(this.bombInputDOM.value);
+            let sizeIntValue = parseInt(this.sizeInputDOM.value);
+
+            if (sizeIntValue < bombIntValue) {
+                this.bombInputDOM.value = sizeIntValue;
+            } else {
+
+            }
+        })
+        this.bombInputDOM.addEventListener("change", () => {
+            let sizeIntValue = parseInt(this.sizeInputDOM.value);
+            if (isNumeric(this.bombInputDOM.value)) {
+                let bombIntValue = parseInt(this.bombInputDOM.value);
+
+                if (bombIntValue < sizeIntValue) {
+                    this.bombInputDOM.value = sizeIntValue;
+                }
+            } else {
+                this.bombInputDOM.value = 1;
+            }
         })
     }
     _showSettingWindow() {
@@ -43,8 +71,6 @@ export default class SettingWindow {
 
         this.settingWindow.classList.remove("hidden");
 
-        this.sizeInputDOM = this.settingWindow.querySelector(".setting-size");
-        this.bombInputDOM = this.settingWindow.querySelector(".setting-bomb");
         this.timInputDOM = this.settingWindow.querySelector(".setting-time");
         this.animationInputDOM = this.settingWindow.querySelector(".setting-animation");
 

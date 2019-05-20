@@ -10,10 +10,10 @@ export default class Grid {
         this._cellArray = [];
         this._bombArray = [];
 
-        this.context = context;
-        this.bombCount = bombCount; 
         this.height = size;
         this.width = size;
+        this.context = context;
+        this.bombCount = bombCount; 
         this.cellSize = 650 / size;
         this.enabledAnimation = enabledAnimation;
 
@@ -21,9 +21,16 @@ export default class Grid {
         this._placeBombs();
 
         this._addEventListeners(playingField);
-        this._eventBus.addEventListener("restart", ()=>this.restart());
+        this._eventBus.addEventListener("restart", (data)=>this.restart(data));
     }
-    restart() {
+    restart(data) {
+        // if (data) {
+        //     let {size, bombCount, enabledAnimation} =  data;
+        //     this.bombCount = bombCount;
+        //     this.enabledAnimation = enabledAnimation;
+        //     this.cellSize = 650 / size;
+        // }
+        
         this._cellArray = [];
         this._bombArray = [];
 
