@@ -131,7 +131,7 @@ export default class Grid {
                 cell.bomb = new Bomb(cell);
                 this._bombArray.push(cell.bomb);
                 bombCount -= 1;
-                cell.bomb.render.call(this._cellArray[randomX][randomY]);
+                // cell.bomb.render.call(this._cellArray[randomX][randomY]);
             }
         }
 

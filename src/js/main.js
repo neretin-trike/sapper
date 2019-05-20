@@ -6,6 +6,7 @@ window.onload = function () {
     const domList = {
         roundInfo: document.querySelector(".round-info"),
         playingField: document.getElementById("playing-field"),
+        helpWindow: document.querySelector(".help-window"),
         gameOverWindow: document.querySelector(".game-over-window"),
         settingWindow: document.querySelector(".setting-window"),
         helpButton: document.querySelector(".help.menu-button"),

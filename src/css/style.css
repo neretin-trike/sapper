@@ -188,14 +188,18 @@ h1, h2, h3, p, ul,blockquote {
 .menu .setting {
     background-image: url(../images/setting.png);
 }
-.menu .setting:hover{
+
+.menu .setting.active,
+.menu .setting:hover {
     background-position: 0 -5.1rem;
 }
 
 .menu .help {
     background-image: url(../images/help.png);
 }
-.menu .help:hover{
+
+.menu .help.active,
+.menu .help:hover {
     background-position: 0 -5.1rem;
 }
 

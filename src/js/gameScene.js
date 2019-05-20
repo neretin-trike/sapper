@@ -14,7 +14,9 @@ export default class GameScene {
             displayTime,
             enabledAnimation } = gameSetting;
 
-        let { gameOverWindow,
+        let { 
+            helpWindow,
+            gameOverWindow,
             settingWindow,
             repeatButton,
             helpButton,
@@ -28,12 +30,17 @@ export default class GameScene {
         this.grid = new Grid(size, playingField, context, bombCount, enabledAnimation);
 
         this.gameOverWindow = new GameOverWindow(size, bombCount, gameOverWindow);
-        this.settingWindow = new SettingWindow(gameSetting, settingWindow);
+        this.settingWindow = new SettingWindow(gameSetting, settingWindow, settingButton);
+
 
         helpButton.addEventListener("click", () => {
-            alert();
+            helpButton.classList.toggle("active");
+            helpWindow.classList.toggle("hidden");
         });
         settingButton.addEventListener("click", () => {
+            // settingButton.classList.toggle("active");
+            // settingWindow.classList.toggle("hidden");
+            
             this._eventBus.emitEvent("settingShow");
         });
         repeatButton.addEventListener("click", () => {

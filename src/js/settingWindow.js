@@ -2,11 +2,12 @@ import EventBus from "./eventBus.js";
 import { saveToLocaleStorage, isNumeric } from "./utils.js";
 
 export default class SettingWindow {
-    constructor(setting, dom) {
+    constructor(setting, dom, settingMenu) {
         this._eventBus = new EventBus();
 
         this.setting = setting;
         this.settingWindow = dom;
+        this.settingMenu = settingMenu;
 
         this._addEventListeners();
     }
@@ -15,7 +16,8 @@ export default class SettingWindow {
         let buttonSave = this.settingWindow.querySelector(".button.save");
 
         buttonClose.addEventListener("click", () => {
-            this.settingWindow.classList.add("hidden");
+            this.settingMenu.classList.toggle("active");
+            this.settingWindow.classList.toggle("hidden");
             this._eventBus.emitEvent("continuewatchPause");
         });
         buttonSave.addEventListener("click", () => {
@@ -69,7 +71,9 @@ export default class SettingWindow {
             displayTime,
             enabledAnimation } = this.setting;
 
-        this.settingWindow.classList.remove("hidden");
+        this.settingMenu.classList.toggle("active");
+        this.settingWindow.classList.toggle("hidden");
+        // this.settingWindow.classList.remove("hidden");
 
         this.timInputDOM = this.settingWindow.querySelector(".setting-time");
         this.animationInputDOM = this.settingWindow.querySelector(".setting-animation");
